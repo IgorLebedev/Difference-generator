@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { program } from "commander";
-import { genDiff } from "../src/index.js";
+import { program } from 'commander';
+import genDiff from '../src/index.js';
 
 program
   .name('gendiff')
@@ -11,4 +11,4 @@ program
   .option('-f, --format <type>', 'output format', 'json')
   .action((filepath1, filepath2) => console.log(genDiff(filepath1, filepath2)));
 
-program.parse()
+program.parse();
