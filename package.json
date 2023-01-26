@@ -1,0 +1,26 @@
+{
+  "name": "@hexlet/code",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Gendiff project",
+  "bin": {
+    "gendiff": "./bin/gendiff.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IgorLebedev/frontend-project-46.git"
+  },
+  "author": "Igor Lebedev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IgorLebedev/frontend-project-46/issues"
+  },
+  "homepage": "https://github.com/IgorLebedev/frontend-project-46#readme",
+  "dependencies": {
+    "commander": "^10.0.0"
+  }
+}
