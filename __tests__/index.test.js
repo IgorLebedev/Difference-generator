@@ -1,6 +1,5 @@
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import path from 'path';
+import path, { dirname } from 'path';
 import expected from '../__fixtures__/expect.js';
 import gendiff from '../src/index.js';
 
