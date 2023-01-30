@@ -1,18 +1,16 @@
 env:
   browser: true
   es2021: true
+  jest: true
 extends: airbnb-base
 overrides: []
 parserOptions:
   ecmaVersion: latest
   sourceType: module
-rules: {
-  import/extensions: [0, {  <js>: "always"  }]
-  "no-param-reassign": [
-      "error",
-      {
-        "props": true,
-        "ignorePropertyModificationsFor": ["acc"]
-      }
-    ]
-}
+rules:
+  no-console: 0
+  import/extensions:
+    - error
+    - ignorePackages
+    - js: always
+  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
