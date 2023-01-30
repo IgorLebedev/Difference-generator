@@ -4,10 +4,13 @@ import path from 'path';
 
 const getAbsolutePath = (pathToFile) => path.resolve(process.cwd(), pathToFile);
 
+const readFile = (file) => fs.readFileSync(file);
+
 const parse = (file) => {
   if (file.endsWith('.json')) {
-    return JSON.parse(fs.readFileSync(getAbsolutePath(file)));
+    return JSON.parse(readFile(getAbsolutePath(file)));
   }
+  return JSON.parse(readFile(getAbsolutePath(file)));
 };
 
 const genDiff = (file1, file2) => {
@@ -19,14 +22,12 @@ const genDiff = (file1, file2) => {
 
   const changes = allSortedKeys.reduce((acc, key) => {
     if (!_.has(file1Coll, key)) {
-      acc += `\n- ${key}: ${file2Coll[key]}`;
-    } else if (!_.has(file2Coll, key)) {
-      acc += `\n- ${key}: ${file1Coll[key]}`;
-    } else if (file1Coll[key] !== file2Coll[key]) {
-      acc += `\n- ${key}: ${file1Coll[key]}`;
-      acc += `\n+ ${key}: ${file2Coll[key]}`;
-    } else acc += `\n  ${key}: ${file1Coll[key]}`;
-    return acc;
+      return `${acc}\n- ${key}: ${file2Coll[key]}`;
+    } if (!_.has(file2Coll, key)) {
+      return `${acc}\n- ${key}: ${file1Coll[key]}`;
+    } if (file1Coll[key] !== file2Coll[key]) {
+      return `${acc}\n- ${key}: ${file1Coll[key]}\n+ ${key}: ${file2Coll[key]}`;
+    } return `${acc}\n  ${key}: ${file1Coll[key]}`;
   }, '');
   return `{${changes}\n}`;
 };
