@@ -4,9 +4,9 @@ import path from 'path';
 
 const getAbsolutePath = (pathToFile) => path.resolve(process.cwd(), pathToFile);
 
-const parse = (path) => {
-  if (path.endsWith('.json')) {
-    return JSON.parse(fs.readFileSync(getAbsolutePath(path)))
+const parse = (file) => {
+  if (file.endsWith('.json')) {
+    return JSON.parse(fs.readFileSync(getAbsolutePath(file)));
   }
 };
 
