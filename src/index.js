@@ -1,21 +1,16 @@
 import fs from 'fs';
 import _ from 'lodash';
 import path from 'path';
+import parse from './parser.js';
+import formatter from './formatter.js';
 
 const getAbsolutePath = (pathToFile) => path.resolve(process.cwd(), pathToFile);
 
 const readFile = (file) => fs.readFileSync(file);
 
-const parse = (file) => {
-  if (file.endsWith('.json')) {
-    return JSON.parse(readFile(getAbsolutePath(file)));
-  }
-  return JSON.parse(readFile(getAbsolutePath(file)));
-};
-
 const genDiff = (file1, file2) => {
-  const file1Coll = parse(file1);
-  const file2Coll = parse(file2);
+  const file1Coll = parse(readFile(getAbsolutePath(file1)), formatter(file1));
+  const file2Coll = parse(readFile(getAbsolutePath(file2)), formatter(file2));
   const keys1 = Object.keys(file1Coll);
   const keys2 = Object.keys(file2Coll);
   const allSortedKeys = _.sortBy(_.union(keys1, keys2));
