@@ -9,13 +9,13 @@ const astBuilder = (first, second) => {
       return {
         name: key,
         type: 'added',
-        value: _.cloneDeep(second[key]),
+        value: (second[key]),
       };
     } if (!_.has(second, key)) {
       return {
         name: key,
         type: 'deleted',
-        value: _.cloneDeep(first[key]),
+        value: (first[key]),
       };
     }
     if (_.isObject(first[key]) && _.isObject(second[key])) {
@@ -28,14 +28,14 @@ const astBuilder = (first, second) => {
     if (!_.isEqual(first[key], second[key])) {
       return {
         name: key,
-        type: 'changed',
-        from: _.cloneDeep(first[key]),
-        to: _.cloneDeep(second[key]),
+        type: 'updated',
+        from: (first[key]),
+        to: (second[key]),
       };
     } return {
       name: key,
       type: 'unchanged',
-      value: _.cloneDeep(first[key]),
+      value: (first[key]),
     };
   });
 };
