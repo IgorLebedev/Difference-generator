@@ -13,27 +13,27 @@ const stylish = (ast) => {
         return `{${deepObjects}\n${closingBracketSpace}}`;
       } return tree;
     }
-    const mapped = tree.map((node) => {
+    const result = tree.map((node) => {
       switch (node.type) {
         case 'nested':
-          return `${spacesWithoutSign}${node.name}: ${_.cloneDeep(iter(node.children, multiplier + 1))}`;
+          return `${spacesWithoutSign}${node.name}: ${(iter(node.children, multiplier + 1))}`;
         case 'unchanged':
           return `${spacesWithoutSign}${node.name}: ${iter(node.value, multiplier + 1)}`;
         case 'added':
           return `${spacesWithSign}+ ${node.name}: ${iter(node.value, multiplier + 1)}`;
         case 'deleted':
           return `${spacesWithSign}- ${node.name}: ${iter(node.value, multiplier + 1)}`;
-        case 'changed': {
+        case 'updated': {
           const from = `${spacesWithSign}- ${node.name}: ${iter(node.from, multiplier + 1)}`;
           const to = `${spacesWithSign}+ ${node.name}: ${iter(node.to, multiplier + 1)}`;
           return `${from}\n${to}`;
         }
-        default: throw new Error('unexpected node type');
+        default: throw new Error(`unexpected node type: ${node.type}`);
       }
     });
     return [
       '{',
-      ...mapped,
+      ...result,
       `${closingBracketSpace}}`,
     ].join('\n');
   };
