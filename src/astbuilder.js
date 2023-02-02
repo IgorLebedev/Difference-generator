@@ -1,9 +1,8 @@
 import _ from 'lodash';
 
 const astBuilder = (first, second) => {
-  const keys1 = Object.keys(first);
-  const keys2 = Object.keys(second);
-  const allSortedKeys = _.sortBy(_.union(keys1, keys2));
+  const keys = [Object.keys(first), Object.keys(second)];
+  const allSortedKeys = _.sortBy(_.union(...keys));
   return allSortedKeys.map((key) => {
     if (!_.has(first, key)) {
       return {
