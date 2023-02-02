@@ -5,9 +5,7 @@ import astBuilder from './astbuilder.js';
 import formatter from './fomatters/index.js';
 
 const getAbsolutePath = (pathToFile) => path.resolve(process.cwd(), pathToFile);
-
 const readFile = (file) => fs.readFileSync(file);
-
 const getExtension = (file) => path.extname(file);
 
 const genDiff = (file1, file2, format = 'stylish') => {
