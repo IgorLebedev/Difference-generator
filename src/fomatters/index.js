@@ -7,6 +7,8 @@ const formatter = (ast, format) => {
       return stylish(ast);
     case 'plain':
       return plain(ast);
+    case 'json':
+      return JSON.stringify(...ast);
     default: throw new Error(`Unexpected format: ${format}`);
   }
 };
