@@ -9,3 +9,6 @@
 
 ### Gendiff demo yaml example:
 [![asciicast](https://asciinema.org/a/ztb6OYdms1LVkMqbOuM3veP0d.svg)](https://asciinema.org/a/ztb6OYdms1LVkMqbOuM3veP0d)
+
+### Gendiff demo nested files:
+[![asciicast](https://asciinema.org/a/nYTjqXVnwKtC327Cg58WxzBwQ.svg)](https://asciinema.org/a/nYTjqXVnwKtC327Cg58WxzBwQ)
