@@ -6,7 +6,7 @@ export default (data, format) => {
       return JSON.parse(data);
     case '.yml':
       return yaml.load(data);
-    case 'yaml':
+    case '.yaml':
       return yaml.load(data);
     default: throw new Error(`This format doesn't support: ${format}`);
   }

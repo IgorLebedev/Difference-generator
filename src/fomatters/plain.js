@@ -1,5 +1,5 @@
 const plain = (ast) => {
-  console.log(5);
+  console.log(ast);
 };
 
 export default plain;
