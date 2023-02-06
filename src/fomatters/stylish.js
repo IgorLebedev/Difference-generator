@@ -1,40 +1,52 @@
 import _ from 'lodash';
 
+const chooseSpaces = (place, multiplier) => {
+  switch (place) {
+    case 'withoutSign':
+      return ' '.repeat(4 * multiplier);
+    case 'withSign':
+      return ' '.repeat(4 * multiplier - 2);
+    case 'closingBracket':
+      return ' '.repeat(4 * (multiplier - 1));
+    default:
+      throw new Error('nonoonon');
+  }
+};
+
+const checkUnnested = (node, multiplier) => {
+  if (_.isObject(node)) {
+    const entries = Object.entries(node);
+    const deepObjects = entries
+      .reduce((acc, [key, value]) => `${acc}\n${chooseSpaces('withoutSign', multiplier)}${key}: ${checkUnnested(value, multiplier + 1)}`, '');
+    return `{${deepObjects}\n${chooseSpaces('closingBracket', multiplier)}}`;
+  } return node;
+};
+
 const stylish = (ast) => {
   const iter = (tree, multiplier) => {
-    const spacesWithoutSign = ' '.repeat(4 * multiplier);
-    const spacesWithSign = ' '.repeat(4 * multiplier - 2);
-    const closingBracketSpace = ' '.repeat(4 * (multiplier - 1));
-    if (!_.isArray(tree)) {
-      if (_.isObject(tree)) {
-        const entries = Object.entries(tree);
-        const deepObjects = entries
-          .reduce((acc, [key, value]) => `${acc}\n${spacesWithoutSign}${key}: ${iter(value, multiplier + 1)}`, '');
-        return `{${deepObjects}\n${closingBracketSpace}}`;
-      } return tree;
-    }
     const result = tree.map((node) => {
       switch (node.type) {
         case 'nested':
-          return `${spacesWithoutSign}${node.name}: ${(iter(node.children, multiplier + 1))}`;
+          return `${chooseSpaces('withoutSign', multiplier)}${node.name}: ${(iter(node.children, multiplier + 1))}`;
         case 'unchanged':
-          return `${spacesWithoutSign}${node.name}: ${iter(node.value, multiplier + 1)}`;
+          return `${chooseSpaces('withoutSign', multiplier)}${node.name}: ${checkUnnested(node.value, multiplier + 1)}`;
         case 'added':
-          return `${spacesWithSign}+ ${node.name}: ${iter(node.value, multiplier + 1)}`;
+          return `${chooseSpaces('withSign', multiplier)}+ ${node.name}: ${checkUnnested(node.value, multiplier + 1)}`;
         case 'deleted':
-          return `${spacesWithSign}- ${node.name}: ${iter(node.value, multiplier + 1)}`;
+          return `${chooseSpaces('withSign', multiplier)}- ${node.name}: ${checkUnnested(node.value, multiplier + 1)}`;
         case 'updated': {
-          const from = `${spacesWithSign}- ${node.name}: ${iter(node.from, multiplier + 1)}`;
-          const to = `${spacesWithSign}+ ${node.name}: ${iter(node.to, multiplier + 1)}`;
+          const from = `${chooseSpaces('withSign', multiplier)}- ${node.name}: ${checkUnnested(node.value, multiplier + 1)}`;
+          const to = `${chooseSpaces('withSign', multiplier)}+ ${node.name}: ${checkUnnested(node.value, multiplier + 1)}`;
           return `${from}\n${to}`;
         }
-        default: throw new Error(`unexpected node type: ${node.type}`);
+        default:
+          throw new Error(`unexpected node type: ${node.type}`);
       }
     });
     return [
       '{',
       ...result,
-      `${closingBracketSpace}}`,
+      `${chooseSpaces('closingBracket', multiplier)}}`,
     ].join('\n');
   };
   return iter(ast, 1);
