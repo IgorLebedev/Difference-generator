@@ -1,11 +1,11 @@
 import _ from 'lodash';
 
-const checkUnnested = (tree) => {
-  if (_.isObject(tree)) {
+const checkUnnested = (node) => {
+  if (_.isObject(node)) {
     return '[complex value]';
-  } if (_.isString(tree)) {
-    return `'${tree}'`;
-  } return tree;
+  } if (_.isString(node)) {
+    return `'${node}'`;
+  } return node;
 };
 
 const plain = (ast) => {
