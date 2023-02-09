@@ -11,29 +11,24 @@ const astBuilder = (first, second) => {
         children: astBuilder(first[key], second[key]),
       };
     }
-    if (!_.has(first, key)) {
-      return {
-        name: key,
-        type: 'added',
-        value: second[key],
-      };
-    } if (!_.has(second, key)) {
-      return {
-        name: key,
-        type: 'deleted',
-        value: first[key],
-      };
-    }
-    if (!_.isEqual(first[key], second[key])) {
+    if (!_.isEqual(first[key], second[key]) && _.has(first, key) && _.has(second, key)) {
       return {
         name: key,
         type: 'updated',
         from: first[key],
         to: second[key],
       };
-    } return {
+    }
+    if (!_.has(first, key)) {
+      return {
+        name: key,
+        type: 'added',
+        value: second[key],
+      };
+    }
+    return {
       name: key,
-      type: 'unchanged',
+      type: !_.has(second, key) ? 'deleted' : 'unchanged',
       value: first[key],
     };
   });
