@@ -15,14 +15,15 @@ const plain = (ast) => {
         case 'nested':
           return iter(node.children, `${last}${node.name}.`);
         case 'added':
-          return `Property '${last}${node.name}' was added with value: ${checkUnnested(node.value, last)}`;
+          return `Property '${last}${node.name}' was added with value: ${checkUnnested(node.value)}`;
         case 'deleted':
           return `Property '${last}${node.name}' was removed`;
         case 'updated':
-          return `Property '${last}${node.name}' was updated. From ${checkUnnested(node.from, last)} to ${checkUnnested(node.to, last)}`;
+          return `Property '${last}${node.name}' was updated. From ${checkUnnested(node.from)} to ${checkUnnested(node.to)}`;
         case 'unchanged':
           return [];
-        default: throw new Error(`unexpected node type: ${node.type}`);
+        default:
+          throw new Error(`unexpected node type: ${node.type}`);
       }
     });
     return result.join('\n');
