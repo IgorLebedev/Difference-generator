@@ -5,9 +5,6 @@ const astBuilder = (first, second) => {
   return allSortedKeys.map((key) => {
     const result = {
       name: key,
-      type: null,
-      children: null,
-      value: null,
     };
     if (!_.has(second, key)) {
       result.type = 'deleted';
