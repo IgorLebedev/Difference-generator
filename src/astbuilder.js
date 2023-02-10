@@ -3,29 +3,40 @@ import _ from 'lodash';
 const astBuilder = (first, second) => {
   const allSortedKeys = _.sortBy(_.union(Object.keys(first), Object.keys(second)));
   return allSortedKeys.map((key) => {
-    const result = {
+    if (!_.has(first, key)) {
+      return {
+        name: key,
+        type: 'added',
+        value: second[key],
+      };
+    }
+    if (!_.has(second, key)) {
+      return {
+        name: key,
+        type: 'deleted',
+        value: first[key],
+      };
+    }
+    if (_.isObject(first[key]) && _.isObject(second[key])) {
+      return {
+        name: key,
+        type: 'nested',
+        children: astBuilder(first[key], second[key]),
+      };
+    }
+    if (!_.isEqual(first[key], second[key])) {
+      return {
+        name: key,
+        type: 'updated',
+        value1: first[key],
+        value2: second[key],
+      };
+    }
+    return {
       name: key,
-      makeTree() {
-        if (!_.has(second, key)) {
-          this.type = 'deleted';
-          this.value = first[key];
-        } else if (!_.has(first, key)) {
-          this.type = 'added';
-          this.value = second[key];
-        } else if (_.isObject(first[key]) && _.isObject(second[key])) {
-          this.type = 'nested';
-          this.children = astBuilder(first[key], second[key]);
-        } else if (!_.isEqual(first[key], second[key])) {
-          this.type = 'updated';
-          this.value = [first[key], second[key]];
-        } else if (first[key] === second[key]) {
-          this.type = 'unchanged';
-          this.value = first[key];
-        }
-      },
+      type: 'unchanged',
+      value: first[key],
     };
-    result.makeTree();
-    return result;
   });
 };
 
