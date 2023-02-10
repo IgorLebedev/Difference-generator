@@ -7,24 +7,23 @@ const astBuilder = (first, second) => {
       name: key,
       type: null,
       children: null,
-      value: [],
+      value: null,
     };
     if (!_.has(second, key)) {
       result.type = 'deleted';
-      result.value.push(first[key]);
+      result.value = first[key];
     } else if (!_.has(first, key)) {
       result.type = 'added';
-      result.value.push(second[key]);
+      result.value = second[key];
     } else if (_.isObject(first[key]) && _.isObject(second[key])) {
       result.type = 'nested';
       result.children = astBuilder(first[key], second[key]);
     } else if (!_.isEqual(first[key], second[key])) {
       result.type = 'updated';
-      result.value.push(first[key]);
-      result.value.push(second[key]);
+      result.value = [first[key], second[key]];
     } else if (first[key] === second[key]) {
       result.type = 'unchanged';
-      result.value.push(first[key]);
+      result.value = first[key];
     }
     return result;
   });
