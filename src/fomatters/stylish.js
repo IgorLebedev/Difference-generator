@@ -10,7 +10,8 @@ const checkObj = (node, multiplier) => {
     const deepObjects = entries
       .reduce((acc, [key, value]) => `${acc}\n${generateSpacesWithoutSign(multiplier)}${key}: ${checkObj(value, multiplier + 1)}`, '');
     return `{${deepObjects}\n${generateSpacesWithoutSign(multiplier - 1)}}`;
-  } return node;
+  }
+  return node;
 };
 
 const stylish = (ast) => {
@@ -22,14 +23,15 @@ const stylish = (ast) => {
         case 'nested':
           return `${spacesWithoutSign}${node.name}: ${(iter(node.children, multiplier + 1))}`;
         case 'unchanged':
-          return `${spacesWithoutSign}${node.name}: ${checkObj(node.value, multiplier + 1)}`;
+          return `${spacesWithoutSign}${node.name}: ${checkObj(...node.value, multiplier + 1)}`;
         case 'added':
-          return `${spacesWithSign}+ ${node.name}: ${checkObj(node.value, multiplier + 1)}`;
+          return `${spacesWithSign}+ ${node.name}: ${checkObj(...node.value, multiplier + 1)}`;
         case 'deleted':
-          return `${spacesWithSign}- ${node.name}: ${checkObj(node.value, multiplier + 1)}`;
+          return `${spacesWithSign}- ${node.name}: ${checkObj(...node.value, multiplier + 1)}`;
         case 'updated': {
-          const from = `${spacesWithSign}- ${node.name}: ${checkObj(node.value1, multiplier + 1)}`;
-          const to = `${spacesWithSign}+ ${node.name}: ${checkObj(node.value2, multiplier + 1)}`;
+          const [value1, value2] = node.value;
+          const from = `${spacesWithSign}- ${node.name}: ${checkObj(value1, multiplier + 1)}`;
+          const to = `${spacesWithSign}+ ${node.name}: ${checkObj(value2, multiplier + 1)}`;
           return `${from}\n${to}`;
         }
         default: throw new Error(`unexpected node type: ${node.type}`);

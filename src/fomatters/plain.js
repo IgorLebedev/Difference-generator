@@ -3,9 +3,11 @@ import _ from 'lodash';
 const checkUnnested = (node) => {
   if (_.isObject(node)) {
     return '[complex value]';
-  } if (_.isString(node)) {
+  }
+  if (_.isString(node)) {
     return `'${node}'`;
-  } return node;
+  }
+  return node;
 };
 
 const plain = (ast) => {
@@ -15,11 +17,13 @@ const plain = (ast) => {
         case 'nested':
           return iter(node.children, `${last}${node.name}.`);
         case 'added':
-          return `Property '${last}${node.name}' was added with value: ${checkUnnested(node.value)}`;
+          return `Property '${last}${node.name}' was added with value: ${checkUnnested(...node.value)}`;
         case 'deleted':
           return `Property '${last}${node.name}' was removed`;
-        case 'updated':
-          return `Property '${last}${node.name}' was updated. From ${checkUnnested(node.value1)} to ${checkUnnested(node.value2)}`;
+        case 'updated': {
+          const [value1, value2] = node.value;
+          return `Property '${last}${node.name}' was updated. From ${checkUnnested(value1)} to ${checkUnnested(value2)}`;
+        }
         case 'unchanged':
           return [];
         default:
