@@ -16,8 +16,10 @@ const plain = (ast) => {
       switch (node.type) {
         case 'nested':
           return iter(node.children, `${last}${node.name}.`);
-        case 'added':
-          return `Property '${last}${node.name}' was added with value: ${checkUnnested(node.value)}`;
+        case 'added': {
+          const [value] = node.value;
+          return `Property '${last}${node.name}' was added with value: ${checkUnnested(value)}`;
+        }
         case 'deleted':
           return `Property '${last}${node.name}' was removed`;
         case 'updated': {

@@ -22,12 +22,18 @@ const stylish = (ast) => {
       switch (node.type) {
         case 'nested':
           return `${spacesWithoutSign}${node.name}: ${(iter(node.children, multiplier + 1))}`;
-        case 'unchanged':
-          return `${spacesWithoutSign}${node.name}: ${checkObj(node.value, multiplier + 1)}`;
-        case 'added':
-          return `${spacesWithSign}+ ${node.name}: ${checkObj(node.value, multiplier + 1)}`;
-        case 'deleted':
-          return `${spacesWithSign}- ${node.name}: ${checkObj(node.value, multiplier + 1)}`;
+        case 'unchanged': {
+          const [value] = node.value;
+          return `${spacesWithoutSign}${node.name}: ${checkObj(value, multiplier + 1)}`;
+        }
+        case 'added': {
+          const [value] = node.value;
+          return `${spacesWithSign}+ ${node.name}: ${checkObj(value, multiplier + 1)}`;
+        }
+        case 'deleted': {
+          const [value] = node.value;
+          return `${spacesWithSign}- ${node.name}: ${checkObj(value, multiplier + 1)}`;
+        }
         case 'updated': {
           const [value1, value2] = node.value;
           const from = `${spacesWithSign}- ${node.name}: ${checkObj(value1, multiplier + 1)}`;
