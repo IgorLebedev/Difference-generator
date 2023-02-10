@@ -21,8 +21,8 @@
       {
         "name": "setting3",
         "type": "updated",
-        "from": true,
-        "to": null
+        "value1": true,
+        "value2": null
       },
       {
         "name": "setting4",
@@ -47,8 +47,8 @@
               {
                 "name": "wow",
                 "type": "updated",
-                "from": "",
-                "to": "so much"
+                "value1": "",
+                "value2": "so much"
               }
             ]
           },
@@ -73,8 +73,8 @@
       {
         "name": "baz",
         "type": "updated",
-        "from": "bas",
-        "to": "bars"
+        "value1": "bas",
+        "value2": "bars"
       },
       {
         "name": "foo",
@@ -84,10 +84,10 @@
       {
         "name": "nest",
         "type": "updated",
-        "from": {
+        "value1": {
           "key": "value"
         },
-        "to": "str"
+        "value2": "str"
       }
     ]
   },
