@@ -77,10 +77,10 @@ A difference generator is a program that determines the difference between two d
 ### Demonstration
 
 ### Stylish output:
-[![Stylish](https://asciinema.org/a/MUn9aJNsjU13KKQADn0x3E96H.svg)](https://asciinema.org/a/MUn9aJNsjU13KKQADn0x3E96H)
+[![Stylish](https://asciinema.org/a/MUN754Z0v5vRwUdxpaSKTmMOT.svg)](https://asciinema.org/a/MUN754Z0v5vRwUdxpaSKTmMOT)
 
 ### Plain output:
-[![Plain](https://asciinema.org/a/GhaHXU2i3TFBZWh8GoRf1OlO1.svg)](https://asciinema.org/a/GhaHXU2i3TFBZWh8GoRf1OlO1)
+[![Plain](https://asciinema.org/a/O7pqigQGhHQpQVwNxjQNIdGkC.svg)](https://asciinema.org/a/O7pqigQGhHQpQVwNxjQNIdGkC)
 
 ### JSON output:
-[![JSON](https://asciinema.org/a/44m0dlQHhl6RVri8hoZmWlY91.svg)](https://asciinema.org/a/44m0dlQHhl6RVri8hoZmWlY91)
+[![JSON](https://asciinema.org/a/i8ZCoYwfv1ijEcTpzC9MvE7FW.svg)](https://asciinema.org/a/i8ZCoYwfv1ijEcTpzC9MvE7FW)
