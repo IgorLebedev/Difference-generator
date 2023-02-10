@@ -19,7 +19,7 @@ const plain = (ast) => {
         case 'deleted':
           return `Property '${last}${node.name}' was removed`;
         case 'updated':
-          return `Property '${last}${node.name}' was updated. From ${checkUnnested(node.from)} to ${checkUnnested(node.to)}`;
+          return `Property '${last}${node.name}' was updated. From ${checkUnnested(node.value1)} to ${checkUnnested(node.value2)}`;
         case 'unchanged':
           return [];
         default:

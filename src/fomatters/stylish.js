@@ -28,8 +28,8 @@ const stylish = (ast) => {
         case 'deleted':
           return `${spacesWithSign}- ${node.name}: ${checkObj(node.value, multiplier + 1)}`;
         case 'updated': {
-          const from = `${spacesWithSign}- ${node.name}: ${checkObj(node.from, multiplier + 1)}`;
-          const to = `${spacesWithSign}+ ${node.name}: ${checkObj(node.to, multiplier + 1)}`;
+          const from = `${spacesWithSign}- ${node.name}: ${checkObj(node.value1, multiplier + 1)}`;
+          const to = `${spacesWithSign}+ ${node.name}: ${checkObj(node.value2, multiplier + 1)}`;
           return `${from}\n${to}`;
         }
         default: throw new Error(`unexpected node type: ${node.type}`);
