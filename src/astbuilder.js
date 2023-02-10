@@ -5,26 +5,26 @@ const astBuilder = (first, second) => {
   return allSortedKeys.map((key) => {
     const result = {
       name: key,
-      type: null,
-      children: null,
-      value: [],
+      makeTree() {
+        if (!_.has(second, key)) {
+          this.type = 'deleted';
+          this.value = first[key];
+        } else if (!_.has(first, key)) {
+          this.type = 'added';
+          this.value = second[key];
+        } else if (_.isObject(first[key]) && _.isObject(second[key])) {
+          this.type = 'nested';
+          this.children = astBuilder(first[key], second[key]);
+        } else if (!_.isEqual(first[key], second[key])) {
+          this.type = 'updated';
+          this.value = [first[key], second[key]];
+        } else if (first[key] === second[key]) {
+          this.type = 'unchanged';
+          this.value = first[key];
+        }
+      },
     };
-    if (!_.has(second, key)) {
-      result.type = 'deleted';
-      result.value = [first[key]];
-    } else if (!_.has(first, key)) {
-      result.type = 'added';
-      result.value = [second[key]];
-    } else if (_.isObject(first[key]) && _.isObject(second[key])) {
-      result.type = 'nested';
-      result.children = astBuilder(first[key], second[key]);
-    } else if (!_.isEqual(first[key], second[key])) {
-      result.type = 'updated';
-      result.value = [first[key], second[key]];
-    } else if (first[key] === second[key]) {
-      result.type = 'unchanged';
-      result.value = [first[key]];
-    }
+    result.makeTree();
     return result;
   });
 };
