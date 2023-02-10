@@ -7,25 +7,19 @@
         "name": "follow",
         "type": "added",
         "children": null,
-        "value": [
-          false
-        ]
+        "value": false
       },
       {
         "name": "setting1",
         "type": "unchanged",
         "children": null,
-        "value": [
-          "Value 1"
-        ]
+        "value": "Value 1"
       },
       {
         "name": "setting2",
         "type": "deleted",
         "children": null,
-        "value": [
-          200
-        ]
+        "value": 200
       },
       {
         "name": "setting3",
@@ -40,19 +34,15 @@
         "name": "setting4",
         "type": "added",
         "children": null,
-        "value": [
-          "blah blah"
-        ]
+        "value": "blah blah"
       },
       {
         "name": "setting5",
         "type": "added",
         "children": null,
-        "value": [
-          {
-            "key5": "value5"
-          }
-        ]
+        "value": {
+          "key5": "value5"
+        }
       },
       {
         "name": "setting6",
@@ -72,29 +62,25 @@
                 ]
               }
             ],
-            "value": []
+            "value": null
           },
           {
             "name": "key",
             "type": "unchanged",
             "children": null,
-            "value": [
-              "value"
-            ]
+            "value": "value"
           },
           {
             "name": "ops",
             "type": "added",
             "children": null,
-            "value": [
-              "vops"
-            ]
+            "value": "vops"
           }
         ],
-        "value": []
+        "value": null
       }
     ],
-    "value": []
+    "value": null
   },
   {
     "name": "group1",
@@ -113,9 +99,7 @@
         "name": "foo",
         "type": "unchanged",
         "children": null,
-        "value": [
-          "bar"
-        ]
+        "value": "bar"
       },
       {
         "name": "nest",
@@ -129,34 +113,30 @@
         ]
       }
     ],
-    "value": []
+    "value": null
   },
   {
     "name": "group2",
     "type": "deleted",
     "children": null,
-    "value": [
-      {
-        "abc": 12345,
-        "deep": {
-          "id": 45
-        }
+    "value": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
       }
-    ]
+    }
   },
   {
     "name": "group3",
     "type": "added",
     "children": null,
-    "value": [
-      {
-        "deep": {
-          "id": {
-            "number": 45
-          }
-        },
-        "fee": 100500
-      }
-    ]
+    "value": {
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      },
+      "fee": 100500
+    }
   }
 ]
