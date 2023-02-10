@@ -6,31 +6,21 @@
       {
         "name": "follow",
         "type": "added",
-        "children": null,
-        "value": [
-          false
-        ]
+        "value": false
       },
       {
         "name": "setting1",
         "type": "unchanged",
-        "children": null,
-        "value": [
-          "Value 1"
-        ]
+        "value": "Value 1"
       },
       {
         "name": "setting2",
         "type": "deleted",
-        "children": null,
-        "value": [
-          200
-        ]
+        "value": 200
       },
       {
         "name": "setting3",
         "type": "updated",
-        "children": null,
         "value": [
           true,
           null
@@ -39,20 +29,14 @@
       {
         "name": "setting4",
         "type": "added",
-        "children": null,
-        "value": [
-          "blah blah"
-        ]
+        "value": "blah blah"
       },
       {
         "name": "setting5",
         "type": "added",
-        "children": null,
-        "value": [
-          {
-            "key5": "value5"
-          }
-        ]
+        "value": {
+          "key5": "value5"
+        }
       },
       {
         "name": "setting6",
@@ -65,36 +49,26 @@
               {
                 "name": "wow",
                 "type": "updated",
-                "children": null,
                 "value": [
                   "",
                   "so much"
                 ]
               }
-            ],
-            "value": []
+            ]
           },
           {
             "name": "key",
             "type": "unchanged",
-            "children": null,
-            "value": [
-              "value"
-            ]
+            "value": "value"
           },
           {
             "name": "ops",
             "type": "added",
-            "children": null,
-            "value": [
-              "vops"
-            ]
+            "value": "vops"
           }
-        ],
-        "value": []
+        ]
       }
-    ],
-    "value": []
+    ]
   },
   {
     "name": "group1",
@@ -103,7 +77,6 @@
       {
         "name": "baz",
         "type": "updated",
-        "children": null,
         "value": [
           "bas",
           "bars"
@@ -112,15 +85,11 @@
       {
         "name": "foo",
         "type": "unchanged",
-        "children": null,
-        "value": [
-          "bar"
-        ]
+        "value": "bar"
       },
       {
         "name": "nest",
         "type": "updated",
-        "children": null,
         "value": [
           {
             "key": "value"
@@ -128,35 +97,28 @@
           "str"
         ]
       }
-    ],
-    "value": []
+    ]
   },
   {
     "name": "group2",
     "type": "deleted",
-    "children": null,
-    "value": [
-      {
-        "abc": 12345,
-        "deep": {
-          "id": 45
-        }
+    "value": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
       }
-    ]
+    }
   },
   {
     "name": "group3",
     "type": "added",
-    "children": null,
-    "value": [
-      {
-        "deep": {
-          "id": {
-            "number": 45
-          }
-        },
-        "fee": 100500
-      }
-    ]
+    "value": {
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      },
+      "fee": 100500
+    }
   }
 ]
