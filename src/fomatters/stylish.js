@@ -29,12 +29,12 @@ const stylish = (ast) => {
         case 'deleted':
           return `${spacesWithSign}- ${node.name}: ${checkObj(node.value, multiplier + 1)}`;
         case 'updated': {
-          const [value1, value2] = node.value;
-          const from = `${spacesWithSign}- ${node.name}: ${checkObj(value1, multiplier + 1)}`;
-          const to = `${spacesWithSign}+ ${node.name}: ${checkObj(value2, multiplier + 1)}`;
+          const from = `${spacesWithSign}- ${node.name}: ${checkObj(node.value1, multiplier + 1)}`;
+          const to = `${spacesWithSign}+ ${node.name}: ${checkObj(node.value2, multiplier + 1)}`;
           return `${from}\n${to}`;
         }
-        default: throw new Error(`unexpected node type: ${node.type}`);
+        default:
+          throw new Error(`Unexpected node type: ${node.type}`);
       }
     });
     return ['{', ...result, `${generateSpacesWithoutSign(multiplier - 1)}}`].join('\n');
